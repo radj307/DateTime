@@ -40,7 +40,7 @@ env:
   # Currently this is used for the following scenarios:
   # - Build Subdirectory Name
   # - Archive Name Prefix
-  PROJECT_NAME: 'pow'
+  PROJECT_NAME: 'dt'
   # [BINARY_NAME]
   # The name of the binary executable file, excluding extensions.
   # If this is blank, the value specified by '$PROJECT_NAME' is used instead. (See the 'Configure Environment' step.)
@@ -52,7 +52,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os:         [ ubuntu-latest, windows-2022, macos-latest ] # Use 'windows-2022' instead of 'windows-latest' because it seems to have problems
+        os:         [ windows-latest ]
       fail-fast:    true
 
     steps:
