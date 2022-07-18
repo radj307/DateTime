@@ -45,85 +45,6 @@
     },
 
 
-
-    {
-      "name": "linux-default",
-      "hidden": true,
-      "inherits": "default",
-      "displayName": "LINUX DEFAULT PRESET",
-      "description": "Target the Windows Subsystem for Linux (WSL) or a remote Linux system.",
-      "generator": "Ninja",
-      "vendor": {
-        "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Linux" ] },
-        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": { "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}" }
-      }
-    },
-    {
-      "name": "linux-debug",
-      "inherits": [ "linux-default", "Debug" ],
-      "hidden": false,
-      "displayName": "Linux Debug"
-    },
-    {
-      "name": "linux-relwithdebinfo",
-      "inherits": [ "linux-default", "RelWithDebInfo" ],
-      "hidden": false,
-      "displayName": "Linux Release w/ Debugging Symbols"
-    },
-    {
-      "name": "linux-release",
-      "inherits": [ "linux-default", "Release" ],
-      "hidden": false,
-      "displayName": "Linux Release"
-    },
-    {
-      "name": "linux-minsizerel",
-      "inherits": [ "linux-default", "MinSizeRel" ],
-      "hidden": false,
-      "displayName": "Linux Minimal Release"
-    },
-
-
-
-    {
-      "name": "macos-default",
-      "hidden": true,
-      "inherits": "default",
-      "displayName": "MACOS DEFAULT PRESET",
-      "description": "Target a remote macOS system with Ninja",
-      "generator": "Ninja",
-      "vendor": {
-        "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "macOS" ] },
-        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": { "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}" }
-      }
-    },
-    {
-      "name": "macos-debug",
-      "hidden": false,
-      "inherits": [ "macos-default", "Debug" ],
-      "displayName": "macOS Debug"
-    },
-    {
-      "name": "macos-relwithdebinfo",
-      "inherits": [ "macos-default", "RelWithDebInfo" ],
-      "hidden": false,
-      "displayName": "macOS Release w/ Debugging Symbols"
-    },
-    {
-      "name": "macos-release",
-      "hidden": false,
-      "inherits": [ "macos-default", "Release" ],
-      "displayName": "macOS Release"
-    },
-    {
-      "name": "macos-minsizerel",
-      "inherits": [ "macos-default", "MinSizeRel" ],
-      "hidden": false,
-      "displayName": "macOS Minimal Release"
-    },
-
-
-
     {
       "name": "windows-default",
       "hidden": true,
@@ -172,12 +93,6 @@
       "cleanFirst": true,
       "verbose": false,
       "jobs": 4
-    },
-    {
-      "name": "linux-release",
-      "inherits": "release-clean",
-      "configurePreset": "linux-release",
-      "displayName": "Clean Release"
     },
     {
       "name": "windows-x64-release",

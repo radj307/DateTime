@@ -1,5 +1,6 @@
 ﻿#include "rc/version.h"
 
+#include <sysarch.h>
 #include <TermAPI.hpp>
 #include <ParamsAPI2.hpp>
 #include <envpath.hpp>

@@ -70,7 +70,7 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
       # gcc-10 g++-10 zip unzip (Linux)
     - if:   ${{ runner.os == 'Linux' }}
-      run:  sudo apt-get update && sudo apt-get install gcc-10 g++-10 zip unzip -y
+      run:  sudo apt-get update && sudo apt-get install clang++ zip unzip -y
       
       
     # Configure CMake Cache
