@@ -28,24 +28,28 @@ struct Help {
 	{
 		return os
 			<< "dt  v" << dt_VERSION_EXTENDED << '\n'
-			<< "  Commandline Date & Time Utility." << '\n'
+			<< "  Commandline utility that prints the current date & time, with configurable formatting." << '\n'
 			<< '\n'
 			<< "USAGE:\n"
 			<< "  " << h.programName << " [OPTIONS]" << '\n'
 			<< '\n'
-			<< "  The formatting of the date & time can be set independently; however the date always preceeds the time." << '\n'
+			<< "  Regardless of formatting, output always follows this pattern:" << '\n'
+			<< "   \"[DATE][SEPERATOR][TIME]\"" << '\n'
 			<< '\n'
 			<< "OPTIONS:\n"
 			<< "  -h, --help               Shows this help display, then exits." << '\n'
 			<< "  -v, --version            Shows the current version number, then exits." << '\n'
 			<< "  -q, --quiet              Prevents non-essential console output & formatting." << '\n'
-			<< "  -d, --date <FORMAT>      Sets the date formatting style to use.  Set to a blank string \"\" to hide." << '\n'
-			<< "                            Defaults to \"" << DEFAULT_DATE_FORMAT << "\".  A list of values can be found here:" << '\n'
-			<< "                            https://en.cppreference.com/w/cpp/chrono/year_month_day/formatter" << '\n'
-			<< "  -t, --time <FORMAT>      Sets the time formatting style to use.  Set to a blank string \"\" to hide." << '\n'
-			<< "                            Defaults to \"" << DEFAULT_TIME_FORMAT << "\".  A list of values can be found here:" << '\n'
-			<< "                            https://en.cppreference.com/w/cpp/io/manip/put_time" << '\n'
-			<< "  -s, --sep <SEPERATOR>    Sets the seperator to use when showing both date & time.  Default: \"" << DEFAULT_SEPERATOR << "\"" << '\n'
+			<< "  -d, --date <FORMAT>      Sets the format string used for the current date." << '\n'
+			<< "                            To hide the date, use a blank string \"\"." << '\n'
+			<< "                            The default date format string is \"" << DEFAULT_DATE_FORMAT << "\"." << '\n'
+			<< "                            Options: https://en.cppreference.com/w/cpp/chrono/year_month_day/formatter" << '\n'
+			<< "  -t, --time <FORMAT>      Sets the format string used for the current time." << '\n'
+			<< "                            To hide the time, use a blank string \"\"." << '\n'
+			<< "                            The default time format string is \"" << DEFAULT_TIME_FORMAT << "\"." << '\n'
+			<< "                            Options: https://en.cppreference.com/w/cpp/io/manip/put_time" << '\n'
+			<< "  -s, --sep <SEPERATOR>    Sets the string to use as a seperator when both the date and time are shown." << '\n'
+			<< "                            The default seperator string is \"" << DEFAULT_SEPERATOR << "\"" << '\n'
 			;
 	}
 };
@@ -71,9 +75,12 @@ int main(const int argc, char** argv)
 			return 0;
 		}
 
-		Global.dateFormat = args.typegetv_any<opt::Flag, opt::Option>('d', "date").value_or(Global.dateFormat);
-		Global.timeFormat = args.typegetv_any<opt::Flag, opt::Option>('t', "time").value_or(Global.timeFormat);
-		Global.seperator = args.typegetv_any<opt::Flag, opt::Option>('s', "sep").value_or(Global.seperator);
+		if (args.check_any<opt::Flag, opt::Option>('d', "date"))
+			Global.dateFormat = args.typegetv_any<opt::Flag, opt::Option>('d', "date").value_or("");
+		if (args.check_any<opt::Flag, opt::Option>('t', "time"))
+			Global.timeFormat = args.typegetv_any<opt::Flag, opt::Option>('t', "time").value_or("");
+		if (args.check_any<opt::Flag, opt::Option>('s', "sep"))
+			Global.seperator = args.typegetv_any<opt::Flag, opt::Option>('s', "sep").value_or(Global.seperator);
 
 		bool showDate{ !Global.dateFormat.empty() }, showTime{ !Global.timeFormat.empty() };
 
